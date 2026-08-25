@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETL Masterclass — Extract, Transform, Load Presentation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="presentation-app">
+    
+    <!-- Top HUD Navigation -->
+    <header class="presentation-hud">
+      <div class="hud-left">
+        <div class="deck-logo">
+          <span class="deck-logo-badge">ETL</span>
+          <span>DATA PIPELINE MASTERCLASS</span>
+        </div>
+        <span class="hud-module-tag" id="moduleTag">01. Fundamentals</span>
+      </div>
+
+      <div class="hud-center">
+        <div class="hud-slide-counter" id="slideCounter">
+          01 <span>/ 28</span>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <button class="hud-btn hud-btn-primary" id="btnExportPDF" title="Export current deck as 16:9 PDF (Ctrl+P)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Export PDF</span>
+        </button>
+        <button class="hud-btn" id="btnOverview" title="Slide Overview Grid (O)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Overview</span>
+        </button>
+        <button class="hud-btn" id="btnFullscreen" title="Toggle Fullscreen (F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+        <button class="hud-btn" id="btnHelp" title="Keyboard Shortcuts (?)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main 16:9 Presentation Frame -->
+    <main class="deck-viewport">
+      <div class="slide-frame">
+
+        <!-- ==========================================
+             SLIDE 1: APA ITU ETL?
+             ========================================== -->
+        <section class="slide active" data-module="01. Fundamentals">
+          <div class="hero-slide-grid">
+            <div class="hero-content">
+              <div class="slide-category-pill pill-extract">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                Core Foundations
+              </div>
+              <h1 class="hero-main-title">Apa itu ETL?</h1>
+              <p class="hero-subtitle">
+                <strong>ETL</strong> adalah singkatan dari <span style="color:var(--color-extract); font-weight:700;">Extract</span>, <span style="color:var(--color-transform); font-weight:700;">Transform</span>, dan <span style="color:var(--color-load); font-weight:700;">Load</span> — fondasi utama pemrosesan data modern.
+              </p>
+              
+              <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <div class="concept-card card-extract" style="padding:0.75rem 1rem;">
+                  <div style="display:flex; align-items:center; gap:0.75rem;">
+                    <span class="badge-tag" style="background:var(--color-extract-glow); color:var(--color-extract); border-color:var(--color-extract-border);">1. EXTRACT</span>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Mengambil data mentah dari berbagai <em>data source</em>.</span>
+                  </div>
+                </div>
+                <div class="concept-card card-transform" style="padding:0.75rem 1rem;">
+                  <div style="display:flex; align-items:center; gap:0.75rem;">
+                    <span class="badge-tag" style="background:var(--color-transform-glow); color:var(--color-transform); border-color:var(--color-transform-border);">2. TRANSFORM</span>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Mengubah, membersihkan, dan menyiapkan data sesuai kebutuhan bisnis.</span>
+                  </div>
+                </div>
+                <div class="concept-card card-load" style="padding:0.75rem 1rem;">
+                  <div style="display:flex; align-items:center; gap:0.75rem;">
+                    <span class="badge-tag" style="background:var(--color-load-glow); color:var(--color-load); border-color:var(--color-load-border);">3. LOAD</span>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Memasukkan data yang telah matang ke <em>target storage / Data Warehouse</em>.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+              <img src="assets/pipeline_hero.jpg" alt="ETL Data Pipeline Concept" />
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 2: KENAPA KITA MEMBUTUHKAN ETL?
+             ========================================== -->
+        <section class="slide" data-module="01. Fundamentals">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-extract">Problem & Context</span>
+              <h2 class="slide-title">Kenapa Kita Membutuhkan ETL?</h2>
+              <span class="slide-subtitle">Mengapa data di dunia nyata tidak bisa langsung dipakai begitu saja?</span>
+            </div>
+            <div class="slide-number-watermark">02</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card" style="border-left: 4px solid var(--color-danger);">
+                <div class="card-icon-header">
+                  <div class="card-icon" style="background: rgba(239, 68, 68, 0.15); color: #EF4444; border-color: rgba(239, 68, 68, 0.3);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  </div>
+                  <h3 class="card-title" style="color: #F87171;">Kondisi Data Riil di Lapangan</h3>
+                </div>
+                <ul class="feature-list list-danger">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Tersebar di banyak sistem terpisah (Siloed)</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Format dan skema tidak seragam</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Terdapat banyak data duplikat & missing value</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Kualitas data tidak konsisten & butuh aturan bisnis</li>
+                </ul>
+              </div>
+
+              <div class="concept-card" style="border-left: 4px solid var(--color-load);">
+                <div class="card-icon-header">
+                  <div class="card-icon icon-load">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <h3 class="card-title" style="color: #34D399;">Solusi dengan ETL Pipeline</h3>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.25rem;">
+                  <div class="pipeline-node" style="padding:0.75rem; border-color:var(--color-extract);">
+                    <span class="node-title" style="font-size:0.85rem;">Multiple Data Sources</span>
+                    <span class="node-sub">PostgreSQL • MySQL • REST API • Excel</span>
+                  </div>
+                  <div style="text-align:center; color:var(--color-transform); font-size:0.8rem; font-weight:700;">▼ INTEGRASI & STANDARISASI ETL</div>
+                  <div class="pipeline-node" style="padding:0.75rem; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
+                    <span class="node-title" style="color:#34D399; font-size:0.85rem;">Centralized Data Warehouse</span>
+                    <span class="node-sub">Siap dianalisis untuk Business Intelligence & Reporting</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 3: ETL BUKAN SEKADAR MEMINDAHKAN DATA
+             ========================================== -->
+        <section class="slide" data-module="01. Fundamentals">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Deep Concept</span>
+              <h2 class="slide-title">ETL Bukan Sekadar Memindahkan Data</h2>
+              <span class="slide-subtitle">Nilai utama ETL terletak pada kualitas dan pemrosesan data</span>
+            </div>
+            <div class="slide-number-watermark">03</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-3">
+              <div class="concept-card">
+                <div class="card-icon icon-extract"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                <h3 class="card-title">Data Integration</h3>
+                <p class="card-desc">Menggabungkan data dari database berbeda menjadi satu format terpadu.</p>
+              </div>
+
+              <div class="concept-card">
+                <div class="card-icon icon-transform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></div>
+                <h3 class="card-title">Data Cleaning & Standard</h3>
+                <p class="card-desc">Membuang duplikat, merapikan format tanggal/mata uang, dan mengisi missing values.</p>
+              </div>
+
+              <div class="concept-card">
+                <div class="card-icon icon-load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <h3 class="card-title">Business Rules & Agregasi</h3>
+                <p class="card-desc">Menerapkan kalkulasi margin, segmentasi pelanggan, dan ringkasan metrik analitik.</p>
+              </div>
+            </div>
+
+            <div class="takeaway-box">
+              <div class="takeaway-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </div>
+              <div class="takeaway-text">
+                Formula Inti: <span style="color:#FFFFFF; font-weight:800;">ETL = Data Movement + Data Processing + Data Quality</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 4: ETL TOOLS
+             ========================================== -->
+        <section class="slide" data-module="02. Tooling Ecosystem">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-arch">Ecosystem & Stack</span>
+              <h2 class="slide-title">ETL Tools Populer di Industri</h2>
+              <span class="slide-subtitle">Beragam tool spesifik yang dirancang sesuai kebutuhan dan skala arsitektur</span>
+            </div>
+            <div class="slide-number-watermark">04</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="compare-table-wrapper">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th style="width: 30%;">Kategori Tool</th>
+                    <th>Tools Umum yang Digunakan</th>
+                    <th style="width: 35%;">Use Case Utama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong style="color:var(--color-extract);">Cloud Managed ETL</strong></td>
+                    <td><span class="badge-tag">AWS Glue</span> <span class="badge-tag">Azure Data Factory</span></td>
+                    <td>Pipeline serverless terintegrasi ekosistem cloud publik</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:#818CF8;">Workflow Orchestration</strong></td>
+                    <td><span class="badge-tag">Apache Airflow</span></td>
+                    <td>Menjadwalkan, memonitor, dan mengatur dependensi DAG</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:#38BDF8;">Data Integration</strong></td>
+                    <td><span class="badge-tag">Apache NiFi</span></td>
+                    <td>Distribusi dan routing aliran data real-time berbasis visual</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:#A78BFA;">Enterprise ETL</strong></td>
+                    <td><span class="badge-tag">Informatica</span> <span class="badge-tag">Talend</span></td>
+                    <td>Solusi korporat skala besar dengan low-code UI</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:var(--color-transform);">Modern Transformation</strong></td>
+                    <td><span class="badge-tag" style="color:var(--color-transform);">dbt (Data Build Tool)</span></td>
+                    <td>Transformasi berbasis SQL di dalam Cloud Data Warehouse</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:#F472B6;">Big Data Processing</strong></td>
+                    <td><span class="badge-tag">Apache Spark</span></td>
+                    <td>Pemrosesan terdistribusi untuk volume data terabyte/petabyte</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:var(--color-load);">Workflow Automation</strong></td>
+                    <td><span class="badge-tag">n8n</span></td>
+                    <td>Automasi alur kerja ringan berbasis node & API webhook</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 5: BAGAIMANA MEMILIH ETL TOOLS?
+             ========================================== -->
+        <section class="slide" data-module="02. Tooling Ecosystem">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Decision Framework</span>
+              <h2 class="slide-title">Bagaimana Memilih ETL Tools?</h2>
+              <span class="slide-subtitle">Jangan memilih tool hanya karena tren atau popularitas semata</span>
+            </div>
+            <div class="slide-number-watermark">05</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-4">
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-extract-glow); color:var(--color-extract);">01. KARAKTERISTIK DATA</span>
+                <ul class="feature-list" style="gap:0.4rem; font-size:0.82rem;">
+                  <li>• Data Volume (GB vs TB)</li>
+                  <li>• Data Velocity (Batch/Stream)</li>
+                  <li>• Source Diversity</li>
+                </ul>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-transform-glow); color:var(--color-transform);">02. TEKNIS & PROSES</span>
+                <ul class="feature-list" style="gap:0.4rem; font-size:0.82rem;">
+                  <li>• Complexity Transformasi</li>
+                  <li>• Scalability Kebutuhan</li>
+                  <li>• Kemudahan Monitoring</li>
+                </ul>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-load-glow); color:var(--color-load);">03. INFRA & BIAYA</span>
+                <ul class="feature-list" style="gap:0.4rem; font-size:0.82rem;">
+                  <li>• Cloud vs On-Premise</li>
+                  <li>• Total Cost of Ownership</li>
+                  <li>• Keamanan Data (Security)</li>
+                </ul>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-primary-glow); color:#A5B4FC;">04. FAKTOR TIM</span>
+                <ul class="feature-list" style="gap:0.4rem; font-size:0.82rem;">
+                  <li>• Keahlian Tim (SQL/Python)</li>
+                  <li>• Learning Curve Tool</li>
+                  <li>• Support & Ekosistem</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="takeaway-box" style="justify-content:center; text-align:center;">
+              <span style="font-size:1.05rem; font-weight:700; color:#E0E7FF;">
+                💡 <em>"The best tool is not always the most powerful tool — it is the tool that best fits your constraints."</em>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 6: ETL VS ELT (FLOW COMPARISON)
+             ========================================== -->
+        <section class="slide" data-module="03. Architecture Patterns">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-arch">Architectural Comparison</span>
+              <h2 class="slide-title">ETL vs ELT: Perbedaan Alur</h2>
+              <span class="slide-subtitle">Memahami kapan proses transformasi dilakukan dalam pipeline</span>
+            </div>
+            <div class="slide-number-watermark">06</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <!-- ETL Flow -->
+              <div class="concept-card" style="border-top: 3px solid var(--color-extract);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <h3 class="card-title" style="color:var(--color-extract);">Pola Tradisional: ETL</h3>
+                  <span class="badge-tag">Transform Before Load</span>
+                </div>
+                <div class="pipeline-flow-container" style="flex-direction:column; gap:0.5rem;">
+                  <div class="pipeline-node" style="width:100%;"><span class="node-title">1. Data Source</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-transform); background:var(--color-transform-glow);"><span class="node-title" style="color:var(--color-transform);">2. Transform (Staging Engine)</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load);"><span class="node-title" style="color:var(--color-load);">3. Load ke Target DW</span></div>
+                </div>
+              </div>
+
+              <!-- ELT Flow -->
+              <div class="concept-card" style="border-top: 3px solid var(--color-load);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <h3 class="card-title" style="color:var(--color-load);">Pola Modern: ELT</h3>
+                  <span class="badge-tag">Load Raw Data First</span>
+                </div>
+                <div class="pipeline-flow-container" style="flex-direction:column; gap:0.5rem;">
+                  <div class="pipeline-node" style="width:100%;"><span class="node-title">1. Data Source</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load);"><span class="node-title" style="color:var(--color-load);">2. Load Raw ke Data Warehouse</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-transform); background:var(--color-transform-glow);"><span class="node-title" style="color:var(--color-transform);">3. Transform In-Warehouse (SQL/dbt)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 7: ETL VS ELT (DEEP COMPARISON)
+             ========================================== -->
+        <section class="slide" data-module="03. Architecture Patterns">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-arch">Comparison Matrix</span>
+              <h2 class="slide-title">ETL vs ELT: Matriks Komparasi</h2>
+              <span class="slide-subtitle">Kapan harus memilih pendekatan ETL atau ELT?</span>
+            </div>
+            <div class="slide-number-watermark">07</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="compare-table-wrapper">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th style="width: 25%;">Dimensi</th>
+                    <th style="width: 37%; color:var(--color-extract);">ETL (Extract - Transform - Load)</th>
+                    <th style="width: 38%; color:var(--color-load);">ELT (Extract - Load - Transform)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Urutan Eksekusi</strong></td>
+                    <td>Transformasi dilakukan <em>sebelum</em> masuk target</td>
+                    <td>Transformasi dilakukan <em>setelah</em> data disimpan di target</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lokasi Processing</strong></td>
+                    <td>Dilakukan di dedicated processing engine / pipeline server</td>
+                    <td>Memanfaatkan computing power dari Modern Data Warehouse</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Kondisi Raw Data</strong></td>
+                    <td>Hanya data terstruktur/terkurasi yang tersimpan di target</td>
+                    <td>Raw data tersimpan utuh di Data Lake / Warehouse</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ideal Digunakan</strong></td>
+                    <td>Data sensitif (compliance, masking sebelum simpan) & legacy DWH</td>
+                    <td>Cloud Data Warehouse (BigQuery, Snowflake, Redshift) + dbt</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fokus Filosofi</strong></td>
+                    <td><span class="badge-tag">Transformation-centric</span></td>
+                    <td><span class="badge-tag">Data Warehouse-centric</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 8: APA ITU EXTRACT?
+             ========================================== -->
+        <section class="slide" data-module="04. The Extract Phase">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-extract">Extract Deep Dive</span>
+              <h2 class="slide-title">Apa itu Extract?</h2>
+              <span class="slide-subtitle">Mengambil data dari berbagai sumber tanpa mengganggu performa sistem operasional</span>
+            </div>
+            <div class="slide-number-watermark">08</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-3">
+              <div class="concept-card card-extract">
+                <div class="card-icon icon-extract">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <h3 class="card-title">Relational Databases</h3>
+                <p class="card-desc">Database transaksional OLTP operasional harian.</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.5rem;">
+                  <span class="badge-tag">PostgreSQL</span>
+                  <span class="badge-tag">MySQL</span>
+                  <span class="badge-tag">SQL Server</span>
+                  <span class="badge-tag">Oracle</span>
+                </div>
+              </div>
+
+              <div class="concept-card card-extract">
+                <div class="card-icon icon-extract">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <h3 class="card-title">Flat Files & Storage</h3>
+                <p class="card-desc">File laporan berkala, log server, atau export dump.</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.5rem;">
+                  <span class="badge-tag">CSV</span>
+                  <span class="badge-tag">Excel (.xlsx)</span>
+                  <span class="badge-tag">JSON Logs</span>
+                  <span class="badge-tag">Parquet / XML</span>
+                </div>
+              </div>
+
+              <div class="concept-card card-extract">
+                <div class="card-icon icon-extract">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </div>
+                <h3 class="card-title">External Systems</h3>
+                <p class="card-desc">Data dari layanan pihak ketiga melalui protokol jaringan.</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.5rem;">
+                  <span class="badge-tag">REST API</span>
+                  <span class="badge-tag">Webhook Events</span>
+                  <span class="badge-tag">Payment Gateways</span>
+                  <span class="badge-tag">CRM / SaaS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 9: JENIS EXTRACTION
+             ========================================== -->
+        <section class="slide" data-module="04. The Extract Phase">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-extract">Extraction Methods</span>
+              <h2 class="slide-title">3 Metode Utama Extraction</h2>
+              <span class="slide-subtitle">Teknik penarikan data berdasarkan frekuensi dan beban sistem</span>
+            </div>
+            <div class="slide-number-watermark">09</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-3">
+              <div class="concept-card">
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="node-badge" style="background:var(--color-extract-glow); color:var(--color-extract);">01</span>
+                  <h3 class="card-title">Full Extraction</h3>
+                </div>
+                <p class="card-desc">Mengambil seluruh tabel data tanpa filter setiap kali pipeline jalan.</p>
+                <div class="code-box">
+                  <span class="kw">SELECT</span> *<br>
+                  <span class="kw">FROM</span> <span class="tbl">orders</span>;
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="node-badge" style="background:var(--color-transform-glow); color:var(--color-transform);">02</span>
+                  <h3 class="card-title">Incremental Extraction</h3>
+                </div>
+                <p class="card-desc">Hanya mengambil record yang dibuat atau berubah sejak waktu extract terakhir.</p>
+                <div class="code-box">
+                  <span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">orders</span><br>
+                  <span class="kw">WHERE</span> <span class="col">updated_at</span> <span class="op">&gt;</span> <span class="val">:last_extract</span>;
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="node-badge" style="background:var(--color-load-glow); color:var(--color-load);">03</span>
+                  <h3 class="card-title">CDC (Change Data Capture)</h3>
+                </div>
+                <p class="card-desc">Membaca transaksi database binlog secara real-time untuk menangkap setiap event:</p>
+                <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+                  <span class="badge-tag" style="color:#34D399;">INSERT</span>
+                  <span class="badge-tag" style="color:#FBBF24;">UPDATE</span>
+                  <span class="badge-tag" style="color:#F87171;">DELETE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 10: TANTANGAN PADA EXTRACT
+             ========================================== -->
+        <section class="slide" data-module="04. The Extract Phase">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-extract">Engineering Realities</span>
+              <h2 class="slide-title">Tantangan Kritis pada Tahap Extract</h2>
+              <span class="slide-subtitle">Hal-hal yang wajib diantisipasi oleh Data Engineer</span>
+            </div>
+            <div class="slide-number-watermark">10</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <h3 class="card-title" style="color:var(--color-extract);">Infrastruktur & Jaringan</h3>
+                <ul class="feature-list">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> <strong>Source Database Load:</strong> Query besar dapat memperlambat transaksi operasional.</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <strong>API Rate Limiting:</strong> Batasan kuota request per menit pada sistem external.</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg> <strong>Network Timeout & Retries:</strong> Jaringan terputus saat transfer jutaan baris.</li>
+                </ul>
+              </div>
+
+              <div class="concept-card">
+                <h3 class="card-title" style="color:var(--color-transform);">Konsistensi & Schema Drift</h3>
+                <ul class="feature-list">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <strong>Schema Changes:</strong> Kolom dihapus/ditambah di database sumber secara tiba-tiba.</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <strong>Duplicate / Missing Data:</strong> Data hilang karena proses retry tanpa idempotency.</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <strong>Security & Auth:</strong> Token otentikasi API yang expired di tengah proses.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 11: APA ITU INITIAL LOAD?
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-load">Baseline Migration</span>
+              <h2 class="slide-title">Apa itu Initial Load?</h2>
+              <span class="slide-subtitle">Mengambil dan memuat seluruh data historis untuk pertama kali</span>
+            </div>
+            <div class="slide-number-watermark">11</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <h3 class="card-title">Kapan Initial Load Dilakukan?</h3>
+                <ul class="feature-list">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Saat pipeline data baru pertama kali dibangun</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Saat membangun Data Warehouse dari nol</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Migrasi sistem lama ke infrastruktur baru</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Membuat tabel target / agregasi baru</li>
+                </ul>
+              </div>
+
+              <div class="concept-card card-load" style="justify-content:center;">
+                <div class="pipeline-flow-container" style="flex-direction:column; gap:0.6rem;">
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-extract);">
+                    <span class="node-title">Source System</span>
+                    <span class="node-sub" style="font-family:var(--font-mono); color:#38BDF8; font-weight:700;">1,000,000 Existing Records</span>
+                  </div>
+                  <div style="color:var(--color-load); font-weight:700; font-size:0.85rem;">▼ INITIAL LOAD (100% Data Transfer)</div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
+                    <span class="node-title" style="color:#34D399;">Target Data Warehouse</span>
+                    <span class="node-sub" style="font-family:var(--font-mono); color:#34D399; font-weight:700;">1,000,000 Records Populated</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 12: CONTOH INITIAL LOAD
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-load">Practical Example</span>
+              <h2 class="slide-title">Contoh Kasus Initial Load</h2>
+              <span class="slide-subtitle">Memindahkan 1 Juta Transaksi Penjualan Historis</span>
+            </div>
+            <div class="slide-number-watermark">12</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-extract);">SOURCE: orders table</span>
+                <div class="code-box" style="font-size:0.8rem;">
+                  <span class="comment">-- Tabel operasional dengan jutaan baris</span><br>
+                  ID &nbsp; &nbsp; Customer &nbsp; Amount<br>
+                  -------------------------<br>
+                  O001 &nbsp; C001 &nbsp; &nbsp; &nbsp; 100000<br>
+                  O002 &nbsp; C002 &nbsp; &nbsp; &nbsp; 250000<br>
+                  O003 &nbsp; C003 &nbsp; &nbsp; &nbsp; 150000<br>
+                  ...<br>
+                  O1M &nbsp; &nbsp;C999 &nbsp; &nbsp; &nbsp; 500000
+                </div>
+              </div>
+
+              <div class="concept-card card-load">
+                <span class="data-state-label" style="color:var(--color-load);">PIPELINE EXECUTION STEPS</span>
+                <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.25rem;">
+                  <div class="badge-tag" style="background:rgba(56, 189, 248, 0.15); color:#38BDF8; padding:0.6rem;">1. Extract ALL: Menarik seluruh 1,000,000 baris</div>
+                  <div class="badge-tag" style="background:rgba(245, 158, 11, 0.15); color:#F59E0B; padding:0.6rem;">2. Transform: Standarisasi format, validasi skema</div>
+                  <div class="badge-tag" style="background:rgba(16, 185, 129, 0.15); color:#10B981; padding:0.6rem;">3. Load: Mengisi tabel fact_orders di Data Warehouse</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 13: STRATEGI INITIAL LOAD UNTUK DATA BESAR
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-load">High-Volume Optimization</span>
+              <h2 class="slide-title">Strategi Initial Load untuk Data Skala Besar</h2>
+              <span class="slide-subtitle">Mencegah memori crash saat memindahkan puluhan juta data</span>
+            </div>
+            <div class="slide-number-watermark">13</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-3">
+              <div class="concept-card">
+                <div class="card-icon icon-extract"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg></div>
+                <h3 class="card-title">1. Full Direct Load</h3>
+                <p class="card-desc">Menarik seluruh data dalam 1 query besar.</p>
+                <span class="badge-tag" style="color:var(--text-muted);">Cocok untuk: Data &lt; 500K baris</span>
+              </div>
+
+              <div class="concept-card">
+                <div class="card-icon icon-transform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18"/></svg></div>
+                <h3 class="card-title">2. Batch Chunks Load</h3>
+                <p class="card-desc">Memecah query menjadi potongan berkala (misal per 100K baris / per bulan).</p>
+                <span class="badge-tag" style="color:var(--color-transform);">Mencegah query timeout</span>
+              </div>
+
+              <div class="concept-card">
+                <div class="card-icon icon-load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+                <h3 class="card-title">3. Parallel Partition Load</h3>
+                <p class="card-desc">Menjalankan beberapa worker thread secara bersamaan berdasarkan ID atau partition key.</p>
+                <span class="badge-tag" style="color:var(--color-load);">Memaksimalkan throughput</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 14: APA ITU DELTA LOAD?
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Incremental Updates</span>
+              <h2 class="slide-title">Apa itu Delta Load?</h2>
+              <span class="slide-subtitle">Memproses hanya data yang baru dibuat atau berubah sejak eksekusi sebelumnya</span>
+            </div>
+            <div class="slide-number-watermark">14</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <h3 class="card-title">Ilustrasi Perubahan Harian</h3>
+                <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.5rem;">
+                  <div class="badge-tag" style="padding:0.75rem; font-size:0.9rem;">
+                    <strong>Hari 1 (Baseline Initial Load):</strong> 100,000 records
+                  </div>
+                  <div class="badge-tag" style="padding:0.75rem; font-size:0.9rem; border-color:var(--color-transform); background:var(--color-transform-glow); color:#FDE68A;">
+                    <strong>Hari 2 (Aktivitas Baru):</strong> +2,000 data baru, +500 data diupdate
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card card-load" style="justify-content:center; text-align:center;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Volume yang diproses Delta Load Hari 2:</span>
+                <div style="font-size:2.25rem; font-weight:800; color:var(--color-load); font-family:var(--font-mono); margin:0.5rem 0;">
+                  2,500 <span style="font-size:1rem; font-weight:500; color:var(--text-secondary);">records</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--color-danger); background:rgba(239, 68, 68, 0.1); padding:0.4rem 0.75rem; border-radius:var(--radius-pill);">
+                  ❌ Bukan memproses ulang 102,500 data!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 15: DELTA LOAD MENGGUNAKAN TIMESTAMP
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Query Strategy</span>
+              <h2 class="slide-title">Delta Load Menggunakan Timestamp</h2>
+              <span class="slide-subtitle">Metode filter berbasis kolom updated_at / watermark table</span>
+            </div>
+            <div class="slide-number-watermark">15</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-transform);">SQL QUERY PATTERN</span>
+                <div class="code-box" style="font-size:0.88rem;">
+                  <span class="kw">SELECT</span> *<br>
+                  <span class="kw">FROM</span> <span class="tbl">orders</span><br>
+                  <span class="kw">WHERE</span> <span class="col">updated_at</span> <span class="op">&gt;</span> <span class="val">:last_successful_load</span>;
+                </div>
+                <p class="card-desc" style="margin-top:0.75rem;">
+                  Nilai <code>:last_successful_load</code> disimpan di metadata table sebagai checkpoint status.
+                </p>
+              </div>
+
+              <div class="concept-card" style="justify-content:center;">
+                <div class="pipeline-flow-container" style="flex-direction:column; gap:0.4rem; margin:0;">
+                  <div class="pipeline-node" style="width:100%;"><span class="node-title" style="font-size:0.8rem;">1. Baca Waktu Terakhir Load</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-extract);"><span class="node-title" style="font-size:0.8rem;">2. Filter Records di Source Database</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-transform);"><span class="node-title" style="font-size:0.8rem;">3. Transform Changed Records</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load);"><span class="node-title" style="font-size:0.8rem;">4. Upsert (Insert/Update) ke DW</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 16: TANTANGAN DELTA LOAD
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Edge Cases</span>
+              <h2 class="slide-title">Tantangan Kritis pada Delta Load</h2>
+              <span class="slide-subtitle">Skenario khusus yang sering merusak akurasi delta load</span>
+            </div>
+            <div class="slide-number-watermark">16</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-4">
+              <div class="concept-card">
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 01</span>
+                <h3 class="card-title" style="font-size:0.95rem;">Late-Arriving Data</h3>
+                <p class="card-desc" style="font-size:0.8rem;">Event terjadi pukul 10:00, namun baru masuk database sumber pukul 10:15 setelah pipeline selesai.</p>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 02</span>
+                <h3 class="card-title" style="font-size:0.95rem;">Hard Deletes</h3>
+                <p class="card-desc" style="font-size:0.8rem;">Jika record dihapus fisik (<code>DELETE</code>), tidak ada baris baru untuk ditangkap oleh timestamp query.</p>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 03</span>
+                <h3 class="card-title" style="font-size:0.95rem;">Created vs Updated</h3>
+                <p class="card-desc" style="font-size:0.8rem;">Ketiadaan kolom <code>updated_at</code> membuat record yang diedit tidak terdeteksi.</p>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 04</span>
+                <h3 class="card-title" style="font-size:0.95rem;">Clock Skew</h3>
+                <p class="card-desc" style="font-size:0.8rem;">Perbedaan zona waktu atau selisih detik antara server aplikasi dan database cluster.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 17: INITIAL LOAD VS DELTA LOAD (TABLE)
+             ========================================== -->
+        <section class="slide" data-module="05. Loading Strategies">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-load">Strategy Summary</span>
+              <h2 class="slide-title">Initial Load vs Delta Load</h2>
+              <span class="slide-subtitle">Perbandingan karakteristik kedua strategi pemuatan data</span>
+            </div>
+            <div class="slide-number-watermark">17</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="compare-table-wrapper">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Karakteristik</th>
+                    <th style="width: 40%; color:var(--color-extract);">Initial Load</th>
+                    <th style="width: 40%; color:var(--color-load);">Delta Load</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Cakupan Data</strong></td>
+                    <td>Seluruh data historis yang ada (All existing)</td>
+                    <td>Hanya data baru atau yang mengalami perubahan</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Frekuensi</strong></td>
+                    <td>Biasanya 1x di awal inisiasi</td>
+                    <td>Berkala (Hourly, Daily, atau Continuous Streaming)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Volume Pemrosesan</strong></td>
+                    <td>Sangat besar (Heavy bulk processing)</td>
+                    <td>Relatif kecil dan terisolasi</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Kompleksitas Logika</strong></td>
+                    <td>Lebih sederhana (Tulis ulang / Append)</td>
+                    <td>Lebih kompleks (Handling Upsert, CDC, Deletes)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fokus Utama</strong></td>
+                    <td>Membangun baseline data yang komprehensif</td>
+                    <td>Menjaga data tetap up-to-date mendekati real-time</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 18: APA ITU DATA TRANSFORMATION?
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Transformation Phase</span>
+              <h2 class="slide-title">Apa itu Data Transformation?</h2>
+              <span class="slide-subtitle">Mengubah data mentah (raw) menjadi data siap guna yang bernilai bisnis tinggi</span>
+            </div>
+            <div class="slide-number-watermark">18</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="pipeline-flow-container">
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-extract-glow); color:var(--color-extract);">01</span><span class="node-title">Cleaning</span></div>
+              <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-transform-glow); color:var(--color-transform);">02</span><span class="node-title">Standard</span></div>
+              <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-load-glow); color:var(--color-load);">03</span><span class="node-title">Validate</span></div>
+              <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-primary-glow); color:#A5B4FC;">04</span><span class="node-title">Join Multi</span></div>
+              <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:rgba(244, 114, 182, 0.2); color:#F472B6;">05</span><span class="node-title">Business</span></div>
+              <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+              <div class="pipeline-node" style="border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-badge" style="background:var(--color-load); color:#000;">06</span><span class="node-title" style="color:#34D399;">Curated</span></div>
+            </div>
+
+            <div class="grid-2" style="margin-top:0.5rem;">
+              <div class="concept-card">
+                <h4 style="color:var(--color-transform);">Tujuan Utama Transformasi</h4>
+                <p class="card-desc">Menghilangkan anomali, memastikan konsistensi skema antar-sumber data, dan menghasilkan dataset analitik yang terpercaya.</p>
+              </div>
+              <div class="concept-card">
+                <h4 style="color:var(--color-load);">Dampak Langsung ke Bisnis</h4>
+                <p class="card-desc">Laporan finansial, dashboard KPI, dan model Machine Learning tidak terdistorsi oleh data kotor (<em>Garbage In, Garbage Out</em>).</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 19: DATA CLEANING
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Data Quality</span>
+              <h2 class="slide-title">1. Data Cleaning (Pembersihan)</h2>
+              <span class="slide-subtitle">Menghilangkan variasi penulisan liar, spasi tidak beraturan, dan duplikasi data</span>
+            </div>
+            <div class="slide-number-watermark">19</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-danger);">RAW DATA (KOTOR & DUPLIKAT)</span>
+                <table class="data-table-mini">
+                  <thead><tr><th>Customer ID</th><th>Full Name (Raw)</th></tr></thead>
+                  <tbody>
+                    <tr class="highlight-raw"><td>C001</td><td>john doe</td></tr>
+                    <tr class="highlight-raw"><td>C001</td><td>JOHN DOE</td></tr>
+                    <tr class="highlight-raw"><td>C001</td><td>&nbsp; John Doe &nbsp;</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="concept-card card-load">
+                <span class="data-state-label" style="color:var(--color-load);">SETELAH DATA CLEANING & DEDUPLIKASI</span>
+                <table class="data-table-mini">
+                  <thead><tr><th>Customer ID</th><th>Full Name (Cleaned)</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr class="highlight-clean"><td>C001</td><td>JOHN DOE</td><td><span class="badge-tag" style="color:var(--color-load);">Normalized & Single Record</span></td></tr>
+                  </tbody>
+                </table>
+                <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.75rem;">
+                  Aksi: <code>TRIM()</code> spasi + <code>UPPER()</code> casing + <code>DISTINCT</code> deduplikasi ID.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 20: HANDLING MISSING VALUE
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Data Imputation</span>
+              <h2 class="slide-title">2. Handling Missing Value</h2>
+              <span class="slide-subtitle">Strategi menghadapi nilai kosong (NULL) agar tidak merusak perhitungan</span>
+            </div>
+            <div class="slide-number-watermark">20</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-extract);">DATA DENGAN MISSING VALUE (NULL)</span>
+                <table class="data-table-mini">
+                  <thead><tr><th>Customer</th><th>Age</th><th>Handling Choice</th></tr></thead>
+                  <tbody>
+                    <tr><td>C001</td><td>25</td><td>Normal value</td></tr>
+                    <tr class="highlight-raw"><td>C002</td><td>NULL</td><td>Diisi Average / Default</td></tr>
+                    <tr><td>C003</td><td>30</td><td>Normal value</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-transform);">4 STRATEGI PENANGANAN UMUM</span>
+                <ul class="feature-list" style="gap:0.45rem; font-size:0.85rem;">
+                  <li><strong style="color:var(--color-extract);">1. Biarkan NULL:</strong> Jika merepresentasikan arti 'belum diisi'.</li>
+                  <li><strong style="color:var(--color-transform);">2. Default Value (0 / "Unknown"):</strong> Untuk kategori text.</li>
+                  <li><strong style="color:var(--color-load);">3. Imputation (Mean / Median):</strong> Menghitung rata-rata umur.</li>
+                  <li><strong style="color:var(--color-danger);">4. Drop Row:</strong> Menghapus baris jika kolom adalah Primary Key wajib.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 21: DATA STANDARDIZATION
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Normalization</span>
+              <h2 class="slide-title">3. Data Standardization</h2>
+              <span class="slide-subtitle">Menyamakan format data dari berbagai sumber ke dalam standar baku internasional</span>
+            </div>
+            <div class="slide-number-watermark">21</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-3">
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-extract-glow); color:var(--color-extract);">TANGGAL (DATE)</span>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin:0.35rem 0;">25/08/2026<br>Aug 25, 2026<br>2026/08/25</div>
+                <div style="color:var(--color-load); font-weight:700; font-family:var(--font-mono); font-size:0.95rem; border-top:1px solid var(--border-subtle); padding-top:0.5rem;">
+                  ➔ ISO: 2026-08-25
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-transform-glow); color:var(--color-transform);">GENDER / KATEGORI</span>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin:0.35rem 0;">Male<br>Pria<br>Laki-laki</div>
+                <div style="color:var(--color-load); font-weight:700; font-family:var(--font-mono); font-size:0.95rem; border-top:1px solid var(--border-subtle); padding-top:0.5rem;">
+                  ➔ Kode Baku: "M"
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <span class="node-badge" style="background:var(--color-load-glow); color:var(--color-load);">CURRENCY / ANGKA</span>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin:0.35rem 0;">Rp 10.000<br>10,000 IDR<br>IDR 10000</div>
+                <div style="color:var(--color-load); font-weight:700; font-family:var(--font-mono); font-size:0.95rem; border-top:1px solid var(--border-subtle); padding-top:0.5rem;">
+                  ➔ Integer: 10000
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 22: DATA VALIDATION
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Integrity Checks</span>
+              <h2 class="slide-title">4. Data Validation</h2>
+              <span class="slide-subtitle">Memastikan data memenuhi kriteria keabsahan sebelum dimuat ke target</span>
+            </div>
+            <div class="slide-number-watermark">22</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <h3 class="card-title" style="color:var(--color-transform);">Contoh Aturan Validasi (Validation Rules)</h3>
+                <ul class="feature-list">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <code>amount &gt;= 0</code> (Nilai transaksi tidak boleh negatif)</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <code>customer_id IS NOT NULL</code> (ID harus selalu terisi)</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <code>order_date &lt;= CURRENT_DATE</code> (Tidak ada transaksi masa depan)</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <code>email LIKE '%_@__%.__%'</code> (Regex format email valid)</li>
+                </ul>
+              </div>
+
+              <div class="concept-card card-load" style="justify-content:center;">
+                <div class="takeaway-box" style="border-color:var(--color-load);">
+                  <div class="takeaway-icon" style="background:var(--color-load-glow); color:var(--color-load);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="takeaway-text" style="font-size:0.88rem;">
+                    Data yang gagal validasi akan diarahkan ke <strong>Dead Letter Queue (DLQ)</strong> atau tabel error log untuk diinvestigasi.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 23: BUSINESS RULES
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Domain Logic</span>
+              <h2 class="slide-title">5. Penerapan Business Rules</h2>
+              <span class="slide-subtitle">Menerjemahkan aturan logika bisnis perusahaan ke dalam data pipeline</span>
+            </div>
+            <div class="slide-number-watermark">23</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="transform-box">
+              <div class="data-state-panel">
+                <span class="data-state-label" style="color:var(--color-extract);">RAW TRANSACTION DATA</span>
+                <div style="font-family:var(--font-mono); font-size:1.1rem; color:#FFFFFF; margin-top:0.5rem;">
+                  Total Transaction = <span style="color:#38BDF8;">Rp 1,500,000</span>
+                </div>
+              </div>
+
+              <div style="color:var(--color-transform); font-size:1.5rem;">➔</div>
+
+              <div class="data-state-panel" style="border-color:var(--color-transform);">
+                <span class="data-state-label" style="color:var(--color-transform);">BUSINESS LOGIC EVALUATION</span>
+                <div class="code-box" style="padding:0.5rem; font-size:0.8rem;">
+                  <span class="kw">IF</span> total <span class="op">&gt;=</span> 1000000<br>
+                  <span class="kw">THEN</span> customer_segment = <span class="val">"Premium"</span>
+                </div>
+              </div>
+
+              <div style="color:var(--color-load); font-size:1.5rem;">➔</div>
+
+              <div class="data-state-panel" style="border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
+                <span class="data-state-label" style="color:var(--color-load);">CURATED OUTPUT</span>
+                <div style="font-family:var(--font-mono); font-size:1.1rem; color:#34D399; font-weight:700; margin-top:0.5rem;">
+                  Segment = "Premium"
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 24: JOIN DATA DARI MULTIPLE SOURCES
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Data Enrichment</span>
+              <h2 class="slide-title">6. Join Multi-Source Data</h2>
+              <span class="slide-subtitle">Menggabungkan entitas terpisah menjadi satu dataset kaya (Enriched Dataset)</span>
+            </div>
+            <div class="slide-number-watermark">24</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <span class="data-state-label" style="color:var(--color-extract);">3 TABEL SUMBER TERPISAH</span>
+                <div style="display:flex; flex-direction:column; gap:0.4rem; font-family:var(--font-mono); font-size:0.75rem;">
+                  <div class="badge-tag">Customer: C001 (Doni), C002 (Andi)</div>
+                  <div class="badge-tag">Order: O001 | C001 | Rp 100,000</div>
+                  <div class="badge-tag">Product: P001 (Haircut), P002 (Coloring)</div>
+                </div>
+              </div>
+
+              <div class="concept-card card-load">
+                <span class="data-state-label" style="color:var(--color-load);">HASIL SETELAH DI-JOIN & DITRANSFORMASI</span>
+                <table class="data-table-mini">
+                  <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th></tr></thead>
+                  <tbody>
+                    <tr class="highlight-clean"><td>O001</td><td>Doni</td><td>Haircut</td><td>Rp 100,000</td></tr>
+                    <tr class="highlight-clean"><td>O002</td><td>Andi</td><td>Coloring</td><td>Rp 200,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 25: CONTOH TRANSFORMATION PIPELINE
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-transform">Step-by-Step Architecture</span>
+              <h2 class="slide-title">Rangkaian Transformation Pipeline</h2>
+              <span class="slide-subtitle">Alur bertahap dari data mentah hingga menjadi data terkurasi siap pakai</span>
+            </div>
+            <div class="slide-number-watermark">25</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="pipeline-flow-container" style="flex-wrap:wrap; justify-content:center; gap:0.6rem;">
+              <span class="node-badge" style="background:var(--color-extract-glow); color:var(--color-extract);">RAW DATA</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Filter</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Clean</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Standardize</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Validate</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Join</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Business Rules</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="badge-tag">Aggregate</span>
+              <span style="color:var(--text-muted);">➔</span>
+              <span class="node-badge" style="background:var(--color-load); color:#000; font-weight:800;">CURATED DATA</span>
+            </div>
+
+            <div class="takeaway-box" style="margin-top:0.5rem;">
+              <div class="takeaway-text">
+                Setiap tahap memiliki tanggung jawab independen untuk mempermudah debugging dan rollback jika terjadi anomali data.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 26: PUTTING EVERYTHING TOGETHER
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-arch">End-to-End Overview</span>
+              <h2 class="slide-title">Putting Everything Together: Arsitektur Penuh</h2>
+              <span class="slide-subtitle">Visualisasi menyeluruh dari Data Source hingga Business Intelligence</span>
+            </div>
+            <div class="slide-number-watermark">26</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2" style="align-items:center;">
+              <div class="concept-card" style="padding:1rem;">
+                <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.8rem;">
+                  <div class="badge-tag" style="color:var(--color-extract); font-weight:700;">1. DATA SOURCES: PostgreSQL • MySQL • REST API</div>
+                  <div style="text-align:center; color:var(--text-muted);">▼ Extract (Initial / Delta)</div>
+                  <div class="badge-tag" style="color:var(--color-transform); font-weight:700;">2. STAGING & TRANSFORMATION: Cleaning • Validate • Join</div>
+                  <div style="text-align:center; color:var(--text-muted);">▼ Load</div>
+                  <div class="badge-tag" style="color:var(--color-load); font-weight:700;">3. DATA WAREHOUSE & DATA MART</div>
+                  <div style="text-align:center; color:var(--text-muted);">▼ Analytics</div>
+                  <div class="badge-tag" style="background:var(--color-primary-glow); color:#A5B4FC; font-weight:700;">4. BI / REPORTING DASHBOARDS</div>
+                </div>
+              </div>
+
+              <div class="hero-image-wrapper" style="max-height:260px;">
+                <img src="assets/warehouse_hub.jpg" alt="Data Warehouse Hub Architecture" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 27: SETELAH INITIAL LOAD
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-load">Operational Continuity</span>
+              <h2 class="slide-title">Operasional Setelah Initial Load</h2>
+              <span class="slide-subtitle">Siklus berulang menjaga Data Warehouse tetap mutakhir secara efisien</span>
+            </div>
+            <div class="slide-number-watermark">27</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="concept-card">
+                <h3 class="card-title" style="color:var(--color-load);">Alur Delta Load Berkelanjutan</h3>
+                <div class="pipeline-flow-container" style="flex-direction:column; gap:0.4rem; margin:0.5rem 0;">
+                  <div class="pipeline-node" style="width:100%;"><span class="node-title" style="font-size:0.85rem;">SOURCE SYSTEM</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-extract);"><span class="node-title" style="color:var(--color-extract); font-size:0.85rem;">DELTA LOAD (New / Changed Data)</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-transform);"><span class="node-title" style="color:var(--color-transform); font-size:0.85rem;">INCREMENTAL TRANSFORMATION</span></div>
+                  <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-title" style="color:#34D399; font-size:0.85rem;">DATA WAREHOUSE UPDATED</span></div>
+                </div>
+              </div>
+
+              <div class="concept-card" style="justify-content:center;">
+                <h4 style="color:var(--text-primary); font-size:1.1rem; margin-bottom:0.5rem;">Prinsip Kunci:</h4>
+                <p class="card-desc">
+                  Begitu baseline data terisi melalui <strong>Initial Load</strong>, pipeline tidak lagi membaca ulang seluruh database. Sistem berpindah sepenuhnya ke mode <strong>Delta Load</strong> berkala untuk menghemat bandwidth, biaya server, dan waktu pemrosesan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 28: THE BIG PICTURE
+             ========================================== -->
+        <section class="slide" data-module="06. Transformation Deep Dive">
+          <div class="slide-header">
+            <div class="slide-header-left">
+              <span class="slide-category-pill pill-arch">Conclusion & Vision</span>
+              <h2 class="slide-title">The Big Picture</h2>
+              <span class="slide-subtitle">Kesimpulan Akhir: Membangun Data Pipeline yang Andal & Berkelanjutan</span>
+            </div>
+            <div class="slide-number-watermark">28</div>
+          </div>
+
+          <div class="slide-body" style="text-align:center; align-items:center;">
+            <div class="takeaway-box" style="max-width:850px; text-align:center; padding:1.5rem 2rem;">
+              <div style="font-size:1.35rem; font-weight:800; color:#FFFFFF; line-height:1.4;">
+                🚀 <span style="background:linear-gradient(135deg, #38BDF8, #818CF8, #34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">"ETL is a continuous data pipeline, not a one-time data transfer."</span>
+              </div>
+            </div>
+
+            <div class="grid-3" style="max-width:950px; width:100%; margin-top:1rem;">
+              <div class="concept-card" style="text-align:left;">
+                <h4 style="color:var(--color-extract); font-size:0.95rem;">1. Extract Cerdas</h4>
+                <p class="card-desc" style="font-size:0.8rem;">Gunakan Initial Load di awal, beralih ke Delta Load / CDC untuk pemrosesan berkelanjutan.</p>
+              </div>
+
+              <div class="concept-card" style="text-align:left;">
+                <h4 style="color:var(--color-transform); font-size:0.95rem;">2. Transformasi Ketat</h4>
+                <p class="card-desc" style="font-size:0.8rem;">Jaga validasi dan kebersihan data agar insight bisnis yang dihasilkan akurat dan dapat dipercaya.</p>
+              </div>
+
+              <div class="concept-card" style="text-align:left;">
+                <h4 style="color:var(--color-load); font-size:0.95rem;">3. Load & BI Readiness</h4>
+                <p class="card-desc" style="font-size:0.8rem;">Simpan di Data Warehouse terstruktur agar tim analytics dan eksekutif dapat membuat keputusan tepat.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Bottom Controls & Progress Bar -->
+    <footer class="presentation-footer">
+      <div class="footer-nav-controls">
+        <button class="nav-btn" id="btnPrev" title="Previous Slide (← / Backspace)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="nav-btn" id="btnNext" title="Next Slide (→ / Space)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="footer-hint">
+        <span>Gunakan tombol</span>
+        <span class="kbd-badge">←</span>
+        <span class="kbd-badge">→</span>
+        <span class="kbd-badge">Space</span>
+        <span>atau tekan</span>
+        <span class="kbd-badge">O</span>
+        <span>untuk Overview Grid</span>
+      </div>
+    </footer>
+
+    <!-- Progress Indicator Bar at Bottom -->
+    <div class="progress-container">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+  </div>
+
+  <!-- Slide Overview Grid Modal -->
+  <div class="overview-modal" id="overviewModal">
+    <div class="overview-header">
+      <div class="overview-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Daftar Seluruh Slide (28 Slide)</span>
+      </div>
+      <button class="hud-btn" id="btnCloseOverview">Tutup (Esc)</button>
+    </div>
+    <div class="overview-grid" id="overviewGrid">
+      <!-- Generated dynamically by app.js -->
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Help Modal -->
+  <div class="help-modal" id="helpModal">
+    <div class="help-dialog">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <h3 style="font-size:1.15rem; font-weight:700; color:var(--text-primary);">Navigasi Keyboard</h3>
+        <button class="hud-btn" id="btnCloseHelp">Tutup</button>
+      </div>
+      <div class="help-row"><span>Slide Berikutnya</span><div><span class="kbd-badge">→</span> <span class="kbd-badge">Space</span> <span class="kbd-badge">PageDown</span></div></div>
+      <div class="help-row"><span>Slide Sebelumnya</span><div><span class="kbd-badge">←</span> <span class="kbd-badge">Backspace</span> <span class="kbd-badge">PageUp</span></div></div>
+      <div class="help-row"><span>Slide Pertama / Terakhir</span><div><span class="kbd-badge">Home</span> / <span class="kbd-badge">End</span></div></div>
+      <div class="help-row"><span>Toggle Fullscreen</span><div><span class="kbd-badge">F</span></div></div>
+      <div class="help-row"><span>Slide Overview Grid</span><div><span class="kbd-badge">O</span></div></div>
+      <div class="help-row"><span>Export to PDF (Print)</span><div><span class="kbd-badge">P</span> / <span class="kbd-badge">Ctrl + P</span></div></div>
+      <div class="help-row"><span>Bantuan Shortcut</span><div><span class="kbd-badge">?</span></div></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
