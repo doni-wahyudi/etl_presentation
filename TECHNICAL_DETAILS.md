@@ -6,6 +6,7 @@ Interactive modern web-based presentation deck for understanding ETL (Extract, T
 
 ## 1. System Overview & Tech Stack
 * **Language & Core**: HTML5, Vanilla CSS3 (Custom Design System with CSS variables), Vanilla JavaScript (ES6+).
+* **Repository**: [github.com/doni-wahyudi/etl_presentation](https://github.com/doni-wahyudi/etl_presentation) (`main` branch).
 * **Aspect Ratio & Layout**: 16:9 Standard PowerPoint viewport (`.slide-frame` with `aspect-ratio: 16 / 9`) with auto-scaling to screen dimensions.
 * **Target Audience**: Students, junior engineers, career switchers, and fresh graduates looking for clear, structured, non-overwhelming explanations.
 * **Design Philosophy**: "Modern Data Studio" — sleek dark slate background (`#0B0F19`), high contrast typography (`Plus Jakarta Sans` and `JetBrains Mono`), curated pipeline color coding (Extract: Sky Blue `#38BDF8`, Transform: Amber `#F59E0B`, Load: Emerald `#10B981`), responsive glassmorphism cards, and CSS-native micro-animations (`cubic-bezier(0.4, 0, 0.2, 1)`).
