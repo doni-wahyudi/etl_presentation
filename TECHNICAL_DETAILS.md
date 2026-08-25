@@ -9,7 +9,10 @@ Interactive modern web-based presentation deck for understanding ETL (Extract, T
 * **Repository**: [github.com/doni-wahyudi/etl_presentation](https://github.com/doni-wahyudi/etl_presentation) (`main` branch).
 * **Aspect Ratio & Layout**: 16:9 Standard PowerPoint viewport (`.slide-frame` with `aspect-ratio: 16 / 9`) with auto-scaling to screen dimensions.
 * **Target Audience**: Students, junior engineers, career switchers, and fresh graduates looking for clear, structured, non-overwhelming explanations.
-* **Design Philosophy**: "Modern Data Studio" — sleek dark slate background (`#0B0F19`), high contrast typography (`Plus Jakarta Sans` and `JetBrains Mono`), curated pipeline color coding (Extract: Sky Blue `#38BDF8`, Transform: Amber `#F59E0B`, Load: Emerald `#10B981`), responsive glassmorphism cards, and CSS-native micro-animations (`cubic-bezier(0.4, 0, 0.2, 1)`).
+* **Design Philosophy & Multi-Theme Architecture**:
+  * 🌌 **Dark Slate** *(Default Data Studio)*: Sleek dark slate background (`#0B0F19`), Extract: Sky Blue `#38BDF8`, Transform: Amber `#F59E0B`, Load: Emerald `#10B981`.
+  * 🏜️ **Warm Khaki Dark** *(Earthy Espresso & Sand)*: Warm espresso background (`#171513`), warm oat cards (`rgba(36, 32, 28, 0.78)`), Extract: Sand Gold `#E5B869`, Transform: Terracotta `#E27D60`, Load: Olive Sage `#8CB369`, Bronze: `#D4A373`.
+  * 📜 **Warm Khaki Light** *(Linen & Parchment)*: Soft warm linen parchment (`#F4EFEA`), cream cards (`#FFFDF9`), Extract: Desert Ochre `#B37D14`, Transform: Deep Clay `#C04E2B`, Load: Forest Olive `#3D7847`, Espresso text (`#241D17`).
 * **Main Data Source**: `materi.md` (28 slides covering fundamentals, tools, ETL vs ELT, Extract, Initial vs Delta Load, Transformation steps, and End-to-End Architecture).
 
 ---
@@ -17,8 +20,10 @@ Interactive modern web-based presentation deck for understanding ETL (Extract, T
 ## 2. Active Routing & Navigation
 * **Current View**: Single-page slide deck engine with slide pagination (`1` to `28`).
 * **URL Hash Sync**: `#slide-1` through `#slide-28` with full browser history (Back/Forward) support.
+* **Theme Switching**: HUD dropdown menu or shortcut key `T` to dynamically cycle through available themes with automatic `localStorage` persistence.
 * **Navigation Controls**: 
   * Keyboard: Arrow Left/Right (`←`/`→`), `Space`, `Backspace`, `PageUp`, `PageDown`, `Home`, `End`.
+  * Theme Switcher: Key `T` or HUD dropdown.
   * Overview Grid: Key `O` or HUD button (modal displaying miniature cards of all 28 slides).
   * Fullscreen: Key `F` or HUD button.
   * PDF Export: Key `P`, `Ctrl + P`, or HUD button ("Export PDF").

@@ -4,10 +4,17 @@
  */
 
 class PresentationDeck {
+  static THEMES = [
+    { id: 'slate', name: 'Dark Slate' },
+    { id: 'khaki-dark', name: 'Warm Khaki (Dark)' },
+    { id: 'khaki-light', name: 'Warm Khaki (Light)' }
+  ];
+
   constructor() {
     this.slides = document.querySelectorAll('.slide');
     this.totalSlides = this.slides.length;
     this.currentSlideIndex = 0;
+    this.currentTheme = 'slate';
     
     // UI Elements
     this.slideCounterEl = document.getElementById('slideCounter');
@@ -23,11 +30,112 @@ class PresentationDeck {
   }
 
   init() {
+    this.initTheme();
     this.buildOverviewGrid();
     this.bindEvents();
     
     // Handle URL Hash deep linking on load
     this.handleHashChange();
+  }
+
+  initTheme() {
+    this.themeDropdownContainer = document.getElementById('themeDropdownContainer');
+    this.btnThemeToggle = document.getElementById('btnThemeToggle');
+    this.themeDropdownMenu = document.getElementById('themeDropdownMenu');
+    this.currentThemeLabel = document.getElementById('currentThemeLabel');
+    this.themeOptionBtns = document.querySelectorAll('.theme-option-btn');
+
+    // Read saved theme from localStorage or fallback to 'slate'
+    let savedTheme = 'slate';
+    try {
+      savedTheme = localStorage.getItem('etl_deck_theme') || 'slate';
+    } catch (err) {
+      console.warn('localStorage not available', err);
+    }
+    this.setTheme(savedTheme, false);
+
+    // Bind dropdown click
+    if (this.btnThemeToggle) {
+      this.btnThemeToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleThemeDropdown();
+      });
+    }
+
+    // Bind theme option buttons
+    this.themeOptionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const themeVal = btn.getAttribute('data-theme-value');
+        if (themeVal) {
+          this.setTheme(themeVal);
+          this.closeThemeDropdown();
+        }
+      });
+    });
+
+    // Close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      if (this.themeDropdownContainer && !this.themeDropdownContainer.contains(e.target)) {
+        this.closeThemeDropdown();
+      }
+    });
+  }
+
+  toggleThemeDropdown() {
+    if (this.themeDropdownContainer) {
+      const isOpen = this.themeDropdownContainer.classList.toggle('open');
+      if (this.btnThemeToggle) {
+        this.btnThemeToggle.setAttribute('aria-expanded', String(isOpen));
+      }
+    }
+  }
+
+  closeThemeDropdown() {
+    if (this.themeDropdownContainer) {
+      this.themeDropdownContainer.classList.remove('open');
+      if (this.btnThemeToggle) {
+        this.btnThemeToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+
+  setTheme(themeId, persist = true) {
+    const themeObj = PresentationDeck.THEMES.find(t => t.id === themeId) || PresentationDeck.THEMES[0];
+    this.currentTheme = themeObj.id;
+
+    // Apply attribute on root html element
+    document.documentElement.setAttribute('data-theme', themeObj.id);
+
+    // Update button label
+    if (this.currentThemeLabel) {
+      this.currentThemeLabel.textContent = themeObj.name;
+    }
+
+    // Update active state on option buttons
+    if (this.themeOptionBtns) {
+      this.themeOptionBtns.forEach(btn => {
+        if (btn.getAttribute('data-theme-value') === themeObj.id) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    if (persist) {
+      try {
+        localStorage.setItem('etl_deck_theme', themeObj.id);
+      } catch (err) {
+        console.warn('Unable to persist theme to localStorage', err);
+      }
+    }
+  }
+
+  cycleTheme() {
+    const currentIndex = PresentationDeck.THEMES.findIndex(t => t.id === this.currentTheme);
+    const nextIndex = (currentIndex + 1) % PresentationDeck.THEMES.length;
+    this.setTheme(PresentationDeck.THEMES[nextIndex].id);
   }
 
   handleHashChange() {
@@ -130,7 +238,7 @@ class PresentationDeck {
       card.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span class="overview-card-num">#${slideNum}</span>
-          <span style="font-size:0.65rem; color:#A5B4FC; text-transform:uppercase; font-weight:700;">${moduleName}</span>
+          <span style="font-size:0.65rem; color:var(--color-primary); text-transform:uppercase; font-weight:700;">${moduleName}</span>
         </div>
         <div class="overview-card-title">${titleText}</div>
       `;
@@ -155,6 +263,7 @@ class PresentationDeck {
   openOverview() {
     this.overviewModal.classList.add('open');
     this.closeHelp();
+    this.closeThemeDropdown();
   }
 
   closeOverview() {
@@ -172,6 +281,7 @@ class PresentationDeck {
   openHelp() {
     this.helpModal.classList.add('open');
     this.closeOverview();
+    this.closeThemeDropdown();
   }
 
   closeHelp() {
@@ -192,6 +302,7 @@ class PresentationDeck {
 
   exportPDF() {
     // Trigger native browser print dialog configured for 16:9 PDF export
+    this.closeThemeDropdown();
     window.print();
   }
 
@@ -237,6 +348,12 @@ class PresentationDeck {
           this.toggleFullscreen();
           break;
 
+        case 't':
+        case 'T':
+          e.preventDefault();
+          this.cycleTheme();
+          break;
+
         case 'o':
         case 'O':
           e.preventDefault();
@@ -251,6 +368,7 @@ class PresentationDeck {
         case 'Escape':
           this.closeOverview();
           this.closeHelp();
+          this.closeThemeDropdown();
           break;
 
         case 'p':

@@ -27,6 +27,50 @@
       </div>
 
       <div class="hud-right">
+        <!-- Theme Selector Dropdown -->
+        <div class="theme-dropdown-container" id="themeDropdownContainer">
+          <button class="hud-btn" id="btnThemeToggle" title="Pilih Tema Warna (Shortcut: T)" aria-expanded="false" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/>
+            </svg>
+            <span id="currentThemeLabel">Dark Slate</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="theme-dropdown-menu" id="themeDropdownMenu">
+            <div class="theme-menu-header">PILIH TEMA WARNA (T)</div>
+            <button class="theme-option-btn active" data-theme-value="slate">
+              <span class="theme-swatch swatch-slate"></span>
+              <div class="theme-option-info">
+                <span class="theme-option-name">Dark Slate</span>
+                <span class="theme-option-desc">Modern Data Studio</span>
+              </div>
+              <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+            <button class="theme-option-btn" data-theme-value="khaki-dark">
+              <span class="theme-swatch swatch-khaki-dark"></span>
+              <div class="theme-option-info">
+                <span class="theme-option-name">Warm Khaki (Dark)</span>
+                <span class="theme-option-desc">Espresso, Sand & Sage</span>
+              </div>
+              <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+            <button class="theme-option-btn" data-theme-value="khaki-light">
+              <span class="theme-swatch swatch-khaki-light"></span>
+              <div class="theme-option-info">
+                <span class="theme-option-name">Warm Khaki (Light)</span>
+                <span class="theme-option-desc">Linen, Clay & Olive</span>
+              </div>
+              <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </div>
+        </div>
+
         <button class="hud-btn hud-btn-primary" id="btnExportPDF" title="Export current deck as 16:9 PDF (Ctrl+P)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span>Export PDF</span>
@@ -108,10 +152,10 @@
             <div class="grid-2">
               <div class="concept-card" style="border-left: 4px solid var(--color-danger);">
                 <div class="card-icon-header">
-                  <div class="card-icon" style="background: rgba(239, 68, 68, 0.15); color: #EF4444; border-color: rgba(239, 68, 68, 0.3);">
+                  <div class="card-icon" style="background: rgba(239, 68, 68, 0.12); color: var(--color-danger); border-color: rgba(239, 68, 68, 0.35);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                   </div>
-                  <h3 class="card-title" style="color: #F87171;">Kondisi Data Riil di Lapangan</h3>
+                  <h3 class="card-title" style="color: var(--color-danger);">Kondisi Data Riil di Lapangan</h3>
                 </div>
                 <ul class="feature-list list-danger">
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Tersebar di banyak sistem terpisah (Siloed)</li>
@@ -126,7 +170,7 @@
                   <div class="card-icon icon-load">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
-                  <h3 class="card-title" style="color: #34D399;">Solusi dengan ETL Pipeline</h3>
+                  <h3 class="card-title" style="color: var(--color-load);">Solusi dengan ETL Pipeline</h3>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.25rem;">
                   <div class="pipeline-node" style="padding:0.75rem; border-color:var(--color-extract);">
@@ -135,7 +179,7 @@
                   </div>
                   <div style="text-align:center; color:var(--color-transform); font-size:0.8rem; font-weight:700;">▼ INTEGRASI & STANDARISASI ETL</div>
                   <div class="pipeline-node" style="padding:0.75rem; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
-                    <span class="node-title" style="color:#34D399; font-size:0.85rem;">Centralized Data Warehouse</span>
+                    <span class="node-title" style="color:var(--color-load); font-size:0.85rem;">Centralized Data Warehouse</span>
                     <span class="node-sub">Siap dianalisis untuk Business Intelligence & Reporting</span>
                   </div>
                 </div>
@@ -183,7 +227,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               </div>
               <div class="takeaway-text">
-                Formula Inti: <span style="color:#FFFFFF; font-weight:800;">ETL = Data Movement + Data Processing + Data Quality</span>
+                Formula Inti: <span style="color:var(--text-primary); font-weight:800;">ETL = Data Movement + Data Processing + Data Quality</span>
               </div>
             </div>
           </div>
@@ -219,17 +263,17 @@
                     <td>Pipeline serverless terintegrasi ekosistem cloud publik</td>
                   </tr>
                   <tr>
-                    <td><strong style="color:#818CF8;">Workflow Orchestration</strong></td>
+                    <td><strong style="color:var(--color-primary);">Workflow Orchestration</strong></td>
                     <td><span class="badge-tag">Apache Airflow</span></td>
                     <td>Menjadwalkan, memonitor, dan mengatur dependensi DAG</td>
                   </tr>
                   <tr>
-                    <td><strong style="color:#38BDF8;">Data Integration</strong></td>
+                    <td><strong style="color:var(--color-extract);">Data Integration</strong></td>
                     <td><span class="badge-tag">Apache NiFi</span></td>
                     <td>Distribusi dan routing aliran data real-time berbasis visual</td>
                   </tr>
                   <tr>
-                    <td><strong style="color:#A78BFA;">Enterprise ETL</strong></td>
+                    <td><strong style="color:var(--color-purple);">Enterprise ETL</strong></td>
                     <td><span class="badge-tag">Informatica</span> <span class="badge-tag">Talend</span></td>
                     <td>Solusi korporat skala besar dengan low-code UI</td>
                   </tr>
@@ -239,7 +283,7 @@
                     <td>Transformasi berbasis SQL di dalam Cloud Data Warehouse</td>
                   </tr>
                   <tr>
-                    <td><strong style="color:#F472B6;">Big Data Processing</strong></td>
+                    <td><strong style="color:var(--color-transform);">Big Data Processing</strong></td>
                     <td><span class="badge-tag">Apache Spark</span></td>
                     <td>Pemrosesan terdistribusi untuk volume data terabyte/petabyte</td>
                   </tr>
@@ -297,7 +341,7 @@
               </div>
 
               <div class="concept-card">
-                <span class="node-badge" style="background:var(--color-primary-glow); color:#A5B4FC;">04. FAKTOR TIM</span>
+                <span class="node-badge" style="background:var(--bg-tag-arch); color:var(--color-tag-arch); border:1px solid var(--border-tag-arch);">04. FAKTOR TIM</span>
                 <ul class="feature-list" style="gap:0.4rem; font-size:0.82rem;">
                   <li>• Keahlian Tim (SQL/Python)</li>
                   <li>• Learning Curve Tool</li>
@@ -307,7 +351,7 @@
             </div>
 
             <div class="takeaway-box" style="justify-content:center; text-align:center;">
-              <span style="font-size:1.05rem; font-weight:700; color:#E0E7FF;">
+              <span style="font-size:1.05rem; font-weight:700; color:var(--text-primary);">
                 💡 <em>"The best tool is not always the most powerful tool — it is the tool that best fits your constraints."</em>
               </span>
             </div>
@@ -523,9 +567,9 @@
                 </div>
                 <p class="card-desc">Membaca transaksi database binlog secara real-time untuk menangkap setiap event:</p>
                 <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
-                  <span class="badge-tag" style="color:#34D399;">INSERT</span>
-                  <span class="badge-tag" style="color:#FBBF24;">UPDATE</span>
-                  <span class="badge-tag" style="color:#F87171;">DELETE</span>
+                  <span class="badge-tag" style="color:var(--color-load); font-weight:700;">INSERT</span>
+                  <span class="badge-tag" style="color:var(--color-transform); font-weight:700;">UPDATE</span>
+                  <span class="badge-tag" style="color:var(--color-danger); font-weight:700;">DELETE</span>
                 </div>
               </div>
             </div>
@@ -597,12 +641,12 @@
                 <div class="pipeline-flow-container" style="flex-direction:column; gap:0.6rem;">
                   <div class="pipeline-node" style="width:100%; border-color:var(--color-extract);">
                     <span class="node-title">Source System</span>
-                    <span class="node-sub" style="font-family:var(--font-mono); color:#38BDF8; font-weight:700;">1,000,000 Existing Records</span>
+                    <span class="node-sub" style="font-family:var(--font-mono); color:var(--color-extract); font-weight:700;">1,000,000 Existing Records</span>
                   </div>
                   <div style="color:var(--color-load); font-weight:700; font-size:0.85rem;">▼ INITIAL LOAD (100% Data Transfer)</div>
                   <div class="pipeline-node" style="width:100%; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
-                    <span class="node-title" style="color:#34D399;">Target Data Warehouse</span>
-                    <span class="node-sub" style="font-family:var(--font-mono); color:#34D399; font-weight:700;">1,000,000 Records Populated</span>
+                    <span class="node-title" style="color:var(--color-load);">Target Data Warehouse</span>
+                    <span class="node-sub" style="font-family:var(--font-mono); color:var(--color-load); font-weight:700;">1,000,000 Records Populated</span>
                   </div>
                 </div>
               </div>
@@ -642,9 +686,9 @@
               <div class="concept-card card-load">
                 <span class="data-state-label" style="color:var(--color-load);">PIPELINE EXECUTION STEPS</span>
                 <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.25rem;">
-                  <div class="badge-tag" style="background:rgba(56, 189, 248, 0.15); color:#38BDF8; padding:0.6rem;">1. Extract ALL: Menarik seluruh 1,000,000 baris</div>
-                  <div class="badge-tag" style="background:rgba(245, 158, 11, 0.15); color:#F59E0B; padding:0.6rem;">2. Transform: Standarisasi format, validasi skema</div>
-                  <div class="badge-tag" style="background:rgba(16, 185, 129, 0.15); color:#10B981; padding:0.6rem;">3. Load: Mengisi tabel fact_orders di Data Warehouse</div>
+                  <div class="badge-tag" style="background:var(--color-extract-glow); color:var(--color-extract); border:1px solid var(--color-extract-border); padding:0.6rem;">1. Extract ALL: Menarik seluruh 1,000,000 baris</div>
+                  <div class="badge-tag" style="background:var(--color-transform-glow); color:var(--color-transform); border:1px solid var(--color-transform-border); padding:0.6rem;">2. Transform: Standarisasi format, validasi skema</div>
+                  <div class="badge-tag" style="background:var(--color-load-glow); color:var(--color-load); border:1px solid var(--color-load-border); padding:0.6rem;">3. Load: Mengisi tabel fact_orders di Data Warehouse</div>
                 </div>
               </div>
             </div>
@@ -711,7 +755,7 @@
                   <div class="badge-tag" style="padding:0.75rem; font-size:0.9rem;">
                     <strong>Hari 1 (Baseline Initial Load):</strong> 100,000 records
                   </div>
-                  <div class="badge-tag" style="padding:0.75rem; font-size:0.9rem; border-color:var(--color-transform); background:var(--color-transform-glow); color:#FDE68A;">
+                  <div class="badge-tag" style="padding:0.75rem; font-size:0.9rem; border-color:var(--color-transform); background:var(--color-transform-glow); color:var(--color-transform);">
                     <strong>Hari 2 (Aktivitas Baru):</strong> +2,000 data baru, +500 data diupdate
                   </div>
                 </div>
@@ -788,25 +832,25 @@
           <div class="slide-body">
             <div class="grid-4">
               <div class="concept-card">
-                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 01</span>
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.12); color:var(--color-danger); border:1px solid rgba(239, 68, 68, 0.35); font-weight:700;">CASE 01</span>
                 <h3 class="card-title" style="font-size:0.95rem;">Late-Arriving Data</h3>
                 <p class="card-desc" style="font-size:0.8rem;">Event terjadi pukul 10:00, namun baru masuk database sumber pukul 10:15 setelah pipeline selesai.</p>
               </div>
 
               <div class="concept-card">
-                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 02</span>
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.12); color:var(--color-danger); border:1px solid rgba(239, 68, 68, 0.35); font-weight:700;">CASE 02</span>
                 <h3 class="card-title" style="font-size:0.95rem;">Hard Deletes</h3>
                 <p class="card-desc" style="font-size:0.8rem;">Jika record dihapus fisik (<code>DELETE</code>), tidak ada baris baru untuk ditangkap oleh timestamp query.</p>
               </div>
 
               <div class="concept-card">
-                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 03</span>
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.12); color:var(--color-danger); border:1px solid rgba(239, 68, 68, 0.35); font-weight:700;">CASE 03</span>
                 <h3 class="card-title" style="font-size:0.95rem;">Created vs Updated</h3>
                 <p class="card-desc" style="font-size:0.8rem;">Ketiadaan kolom <code>updated_at</code> membuat record yang diedit tidak terdeteksi.</p>
               </div>
 
               <div class="concept-card">
-                <span class="node-badge" style="background:rgba(239, 68, 68, 0.15); color:#EF4444;">CASE 04</span>
+                <span class="node-badge" style="background:rgba(239, 68, 68, 0.12); color:var(--color-danger); border:1px solid rgba(239, 68, 68, 0.35); font-weight:700;">CASE 04</span>
                 <h3 class="card-title" style="font-size:0.95rem;">Clock Skew</h3>
                 <p class="card-desc" style="font-size:0.8rem;">Perbedaan zona waktu atau selisih detik antara server aplikasi dan database cluster.</p>
               </div>
@@ -890,11 +934,11 @@
               <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
               <div class="pipeline-node"><span class="node-badge" style="background:var(--color-load-glow); color:var(--color-load);">03</span><span class="node-title">Validate</span></div>
               <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
-              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-primary-glow); color:#A5B4FC;">04</span><span class="node-title">Join Multi</span></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--bg-tag-arch); color:var(--color-tag-arch); border:1px solid var(--border-tag-arch);">04</span><span class="node-title">Join Multi</span></div>
               <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
-              <div class="pipeline-node"><span class="node-badge" style="background:rgba(244, 114, 182, 0.2); color:#F472B6;">05</span><span class="node-title">Business</span></div>
+              <div class="pipeline-node"><span class="node-badge" style="background:var(--color-transform-glow); color:var(--color-transform);">05</span><span class="node-title">Business</span></div>
               <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
-              <div class="pipeline-node" style="border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-badge" style="background:var(--color-load); color:#000;">06</span><span class="node-title" style="color:#34D399;">Curated</span></div>
+              <div class="pipeline-node" style="border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-badge" style="background:var(--color-load); color:#000; font-weight:800;">06</span><span class="node-title" style="color:var(--color-load);">Curated</span></div>
             </div>
 
             <div class="grid-2" style="margin-top:0.5rem;">
@@ -1091,8 +1135,8 @@
             <div class="transform-box">
               <div class="data-state-panel">
                 <span class="data-state-label" style="color:var(--color-extract);">RAW TRANSACTION DATA</span>
-                <div style="font-family:var(--font-mono); font-size:1.1rem; color:#FFFFFF; margin-top:0.5rem;">
-                  Total Transaction = <span style="color:#38BDF8;">Rp 1,500,000</span>
+                <div style="font-family:var(--font-mono); font-size:1.1rem; color:var(--text-primary); margin-top:0.5rem;">
+                  Total Transaction = <span style="color:var(--color-extract); font-weight:700;">Rp 1,500,000</span>
                 </div>
               </div>
 
@@ -1110,7 +1154,7 @@
 
               <div class="data-state-panel" style="border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);">
                 <span class="data-state-label" style="color:var(--color-load);">CURATED OUTPUT</span>
-                <div style="font-family:var(--font-mono); font-size:1.1rem; color:#34D399; font-weight:700; margin-top:0.5rem;">
+                <div style="font-family:var(--font-mono); font-size:1.1rem; color:var(--color-load); font-weight:700; margin-top:0.5rem;">
                   Segment = "Premium"
                 </div>
               </div>
@@ -1221,7 +1265,7 @@
                   <div style="text-align:center; color:var(--text-muted);">▼ Load</div>
                   <div class="badge-tag" style="color:var(--color-load); font-weight:700;">3. DATA WAREHOUSE & DATA MART</div>
                   <div style="text-align:center; color:var(--text-muted);">▼ Analytics</div>
-                  <div class="badge-tag" style="background:var(--color-primary-glow); color:#A5B4FC; font-weight:700;">4. BI / REPORTING DASHBOARDS</div>
+                  <div class="badge-tag" style="background:var(--bg-tag-arch); color:var(--color-tag-arch); border:1px solid var(--border-tag-arch); font-weight:700;">4. BI / REPORTING DASHBOARDS</div>
                 </div>
               </div>
 
@@ -1256,7 +1300,7 @@
                   <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
                   <div class="pipeline-node" style="width:100%; border-color:var(--color-transform);"><span class="node-title" style="color:var(--color-transform); font-size:0.85rem;">INCREMENTAL TRANSFORMATION</span></div>
                   <div class="pipeline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 10 12 15 17 10"/></svg></div>
-                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-title" style="color:#34D399; font-size:0.85rem;">DATA WAREHOUSE UPDATED</span></div>
+                  <div class="pipeline-node" style="width:100%; border-color:var(--color-load); background:rgba(16, 185, 129, 0.1);"><span class="node-title" style="color:var(--color-load); font-size:0.85rem;">DATA WAREHOUSE UPDATED</span></div>
                 </div>
               </div>
 
@@ -1285,8 +1329,8 @@
 
           <div class="slide-body" style="text-align:center; align-items:center;">
             <div class="takeaway-box" style="max-width:850px; text-align:center; padding:1.5rem 2rem;">
-              <div style="font-size:1.35rem; font-weight:800; color:#FFFFFF; line-height:1.4;">
-                🚀 <span style="background:linear-gradient(135deg, #38BDF8, #818CF8, #34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">"ETL is a continuous data pipeline, not a one-time data transfer."</span>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--text-primary); line-height:1.4;">
+                🚀 <span style="background:linear-gradient(135deg, var(--color-extract), var(--color-primary), var(--color-load)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">"ETL is a continuous data pipeline, not a one-time data transfer."</span>
               </div>
             </div>
 
@@ -1365,6 +1409,7 @@
       <div class="help-row"><span>Slide Berikutnya</span><div><span class="kbd-badge">→</span> <span class="kbd-badge">Space</span> <span class="kbd-badge">PageDown</span></div></div>
       <div class="help-row"><span>Slide Sebelumnya</span><div><span class="kbd-badge">←</span> <span class="kbd-badge">Backspace</span> <span class="kbd-badge">PageUp</span></div></div>
       <div class="help-row"><span>Slide Pertama / Terakhir</span><div><span class="kbd-badge">Home</span> / <span class="kbd-badge">End</span></div></div>
+      <div class="help-row"><span>Ganti Tema Warna</span><div><span class="kbd-badge">T</span></div></div>
       <div class="help-row"><span>Toggle Fullscreen</span><div><span class="kbd-badge">F</span></div></div>
       <div class="help-row"><span>Slide Overview Grid</span><div><span class="kbd-badge">O</span></div></div>
       <div class="help-row"><span>Export to PDF (Print)</span><div><span class="kbd-badge">P</span> / <span class="kbd-badge">Ctrl + P</span></div></div>

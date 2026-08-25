@@ -10,11 +10,10 @@ An interactive, modern, 28-slide web presentation deck designed for learning and
 
 * **PowerPoint 16:9 Standard Aspect Ratio**: Responsive `.slide-frame` container automatically scales to match any screen size while preserving standard slide proportions.
 * **Multi-Page PDF Export**: Dedicated `@media print` engine formatted for 16:9 Landscape (`16in × 9in`) with clean page breaks per slide. Press **Export PDF** (or `Ctrl + P` / `P`) to generate a clean multi-page presentation PDF.
-* **Modern Data Studio Theme**: Dark Slate background (`#0B0F19`) with semantic color coding:
-  * 🔷 **Extract**: Sky Blue (`#38BDF8`)
-  * 🔶 **Transform**: Amber / Warm Gold (`#F59E0B`)
-  * 🟢 **Load**: Emerald Green (`#10B981`)
-  * 🟣 **Architecture / Accents**: Indigo (`#6366F1`)
+* **Multi-Theme Engine & Warm Khaki Suite**: Switch themes on-the-fly via the top HUD dropdown or by pressing `T`:
+  * 🌌 **Dark Slate** *(Default Data Studio)*: Dark Slate background (`#0B0F19`) with Sky Blue, Amber, Emerald, and Indigo accents.
+  * 🏜️ **Warm Khaki (Dark)**: Earthy Espresso & Sand background (`#171513`) with Desert Gold Extract (`#E5B869`), Terracotta Transform (`#E27D60`), Olive Sage Load (`#8CB369`), and Warm Bronze (`#D4A373`).
+  * 📜 **Warm Khaki (Light)**: Warm Linen Parchment background (`#F4EFEA`) with Golden Ochre, Deep Terracotta, Forest Olive, and Espresso typography.
 * **Complete 28-Slide Syllabus**:
   * **Module 1**: ETL Fundamentals & The Problem with Siloed Data (Slides 1–3)
   * **Module 2**: Tooling Ecosystem (Cloud ETL, Airflow, Spark, dbt, n8n) & Tool Selection Criteria (Slides 4–5)
@@ -26,6 +25,7 @@ An interactive, modern, 28-slide web presentation deck designed for learning and
   * `→` / `Space` / `PageDown`: Next slide
   * `←` / `Backspace` / `PageUp`: Previous slide
   * `Home` / `End`: First / Last slide
+  * `T`: Cycle color themes (Dark Slate, Warm Khaki Dark, Warm Khaki Light)
   * `O`: Open 28-slide thumbnail Overview Grid modal
   * `F`: Fullscreen mode
   * `P` / `Ctrl + P`: Export to PDF / Print
